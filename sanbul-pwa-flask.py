@@ -41,9 +41,6 @@ app.config['WTF_CSRF_ENABLED'] = False
 # =====================================================================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-model    = keras.models.load_model(os.path.join(BASE_DIR, 'fires_model.keras'))
-pipeline = joblib.load(os.path.join(BASE_DIR, 'fires_pipeline.pkl'))
-
 print("모델 & 파이프라인 로드 완료")
 
 # =====================================================================
@@ -87,6 +84,8 @@ def lab():
     form = LabForm()
 
     if form.validate_on_submit():
+        model = keras.models.load_model('fires_model.keras')
+        pipeline = joblib.load('fires_pipeline.pkl')
         # 폼에서 입력값 수집
         longitude      = float(form.longitude.data)
         latitude       = float(form.latitude.data)
