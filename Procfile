@@ -1,1 +1,1 @@
-web: gunicorn sanbul-pwa-flask:app
+web: gunicorn --timeout 120 --workers 1 sanbul-pwa-flask:app
