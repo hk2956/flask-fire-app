@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FF Prediction - 입력 2025810085 김동하</title>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body { background-color: #f8f9fa; }
+    .form-card {
+      max-width: 540px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+      padding: 36px 40px;
+    }
+    .form-card h2 {
+      color: #2d6a4f;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .section-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #888;
+      margin-top: 18px;
+      margin-bottom: 4px;
+    }
+    .btn-submit {
+      background-color: #2d6a4f;
+      border: none;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .btn-submit:hover { background-color: #1b4332; }
+    footer { color: #aaa; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+<!-- 네비게이션 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">🔥 FF Prediction</a>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link text-white" href="/">Home</a>
+      <a class="nav-link text-white fw-bold" href="/prediction">FF Prediction</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="form-card">
+    <h2>📋 Fill in the data</h2>
+
+    <!-- 플래시 오류 메시지 -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for cat, msg in messages %}
+          <div class="alert alert-{{ cat }}">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="/prediction" novalidate>
+      {{ form.hidden_tag() }}
+
+      <!-- 위치 정보 -->
+      <p class="section-label">📍 위치 정보</p>
+      <div class="row g-2">
+        <div class="col-6">
+          <label class="form-label">{{ form.longitude.label.text }}</label>
+          {{ form.longitude(class="form-control", placeholder="예: 6") }}
+          {% if form.longitude.errors %}
+            <div class="text-danger small">{{ form.longitude.errors[0] }}</div>
+          {% endif %}
+        </div>
+        <div class="col-6">
+          <label class="form-label">{{ form.latitude.label.text }}</label>
+          {{ form.latitude(class="form-control", placeholder="예: 5") }}
+          {% if form.latitude.errors %}
+            <div class="text-danger small">{{ form.latitude.errors[0] }}</div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- 날짜 정보 -->
+      <p class="section-label">📅 날짜 정보</p>
+      <div class="row g-2">
+        <div class="col-6">
+          <label class="form-label">{{ form.month.label.text }}</label>
+          {{ form.month(class="form-select") }}
+        </div>
+        <div class="col-6">
+          <label class="form-label">{{ form.day.label.text }}</label>
+          {{ form.day(class="form-select") }}
+        </div>
+      </div>
+
+      <!-- 기상 정보 -->
+      <p class="section-label">🌡️ 기상 정보</p>
+      <div class="row g-2">
+        <div class="col-6">
+          <label class="form-label">{{ form.avg_temp.label.text }}</label>
+          {{ form.avg_temp(class="form-control", placeholder="예: 25") }}
+          {% if form.avg_temp.errors %}
+            <div class="text-danger small">{{ form.avg_temp.errors[0] }}</div>
+          {% endif %}
+        </div>
+        <div class="col-6">
+          <label class="form-label">{{ form.max_temp.label.text }}</label>
+          {{ form.max_temp(class="form-control", placeholder="예: 32") }}
+          {% if form.max_temp.errors %}
+            <div class="text-danger small">{{ form.max_temp.errors[0] }}</div>
+          {% endif %}
+        </div>
+        <div class="col-6">
+          <label class="form-label">{{ form.max_wind_speed.label.text }}</label>
+          {{ form.max_wind_speed(class="form-control", placeholder="예: 8.5") }}
+          {% if form.max_wind_speed.errors %}
+            <div class="text-danger small">{{ form.max_wind_speed.errors[0] }}</div>
+          {% endif %}
+        </div>
+        <div class="col-6">
+          <label class="form-label">{{ form.avg_wind.label.text }}</label>
+          {{ form.avg_wind(class="form-control", placeholder="예: 2.1") }}
+          {% if form.avg_wind.errors %}
+            <div class="text-danger small">{{ form.avg_wind.errors[0] }}</div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- 제출 버튼 -->
+      <div class="d-grid mt-4">
+        <button type="submit" class="btn btn-submit btn-success btn-lg text-white">
+          🔍 Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="text-center mb-3">
+  <footer>© 2025810085 김동하 — Hankyong National University</footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

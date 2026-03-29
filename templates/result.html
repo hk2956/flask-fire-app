@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>산불 예측 결과 2025810085 김동하</title>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    body { background-color: #f8f9fa; }
+    .result-card {
+      max-width: 560px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+      padding: 36px 40px;
+    }
+    .result-header {
+      background: linear-gradient(135deg, #2d6a4f, #52b788);
+      color: white;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+    }
+    .result-header h2 { font-weight: 700; margin: 0; }
+    .area-display {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #d62828;
+      text-align: center;
+      padding: 20px 0;
+    }
+    .area-label {
+      text-align: center;
+      color: #555;
+      font-size: 1.05rem;
+      margin-bottom: 24px;
+    }
+    .info-table th {
+      color: #666;
+      font-weight: 500;
+      width: 40%;
+    }
+    .info-table td { font-weight: 600; }
+    .risk-badge {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    footer { color: #aaa; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+<!-- 네비게이션 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">🔥 FF Prediction</a>
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link text-white" href="/">Home</a>
+      <a class="nav-link text-white" href="/prediction">FF Prediction</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="result-card">
+
+    <!-- 헤더 -->
+    <div class="result-header">
+      <h2>🔥 산불 예측 결과</h2>
+    </div>
+
+    <!-- 예측 면적 -->
+    <div class="area-label">산불 발생 예상 면적</div>
+    <div class="area-display">{{ pred_area }} m²</div>
+
+    <!-- 위험도 뱃지 -->
+    <div class="text-center mb-4">
+      {% if pred_area < 10 %}
+        <span class="risk-badge bg-success text-white">🟢 낮음 (Low Risk)</span>
+      {% elif pred_area < 100 %}
+        <span class="risk-badge bg-warning text-dark">🟡 중간 (Medium Risk)</span>
+      {% elif pred_area < 500 %}
+        <span class="risk-badge bg-orange text-white" style="background:#fd7e14">🟠 높음 (High Risk)</span>
+      {% else %}
+        <span class="risk-badge bg-danger text-white">🔴 매우 높음 (Very High Risk)</span>
+      {% endif %}
+    </div>
+
+    <hr>
+
+    <!-- 입력 정보 요약 -->
+    <h6 class="fw-bold mb-3 text-muted">📋 입력 정보 요약</h6>
+    <table class="table table-sm info-table">
+      <tbody>
+        <tr>
+          <th>위치 (경도 구역)</th>
+          <td>{{ longitude }}</td>
+        </tr>
+        <tr>
+          <th>위치 (위도 구역)</th>
+          <td>{{ latitude }}</td>
+        </tr>
+        <tr>
+          <th>월 (Month)</th>
+          <td>{{ month }}</td>
+        </tr>
+        <tr>
+          <th>요일 (Day)</th>
+          <td>{{ day }}</td>
+        </tr>
+        <tr>
+          <th>평균기온</th>
+          <td>{{ avg_temp }} °C</td>
+        </tr>
+        <tr>
+          <th>최고기온</th>
+          <td>{{ max_temp }} °C</td>
+        </tr>
+        <tr>
+          <th>최대풍속</th>
+          <td>{{ max_wind_speed }} m/s</td>
+        </tr>
+        <tr>
+          <th>평균풍속</th>
+          <td>{{ avg_wind }} m/s</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 다시 예측 버튼 -->
+    <div class="d-grid mt-3">
+      <a href="/prediction" class="btn btn-success btn-lg fw-bold">
+        ↩ 다시 예측하기
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<div class="text-center mb-3">
+  <footer>© 2025810085 김동하 — Hankyong National University</footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
