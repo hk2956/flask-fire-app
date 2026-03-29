@@ -15,7 +15,7 @@ import joblib
 import os
 
 from flask import Flask, render_template, request, redirect, url_for
-from bootstrap_flask import Bootstrap5
+# from bootstrap_flask import Bootstrap5
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
@@ -33,7 +33,7 @@ np.random.seed(42)
 # =====================================================================
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
-bootstrap5 = Bootstrap5(app)
+# bootstrap5 = Bootstrap5(app)
 
 # =====================================================================
 # 모델 & 파이프라인 로드
