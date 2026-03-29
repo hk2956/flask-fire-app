@@ -33,6 +33,7 @@ np.random.seed(42)
 # =====================================================================
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'hard to guess string'
+app.config['WTF_CSRF_ENABLED'] = False
 # bootstrap5 = Bootstrap5(app)
 
 # =====================================================================
